@@ -1,4 +1,4 @@
-# Python Intro - I
+# Python Intro - II
 Introduction into Python.
 
 Assignments are located [here](assignments.md).
