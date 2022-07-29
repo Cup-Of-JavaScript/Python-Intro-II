@@ -1,0 +1,32 @@
+
+- Work Week #1
+  - M
+    - Morning
+      - Get up
+      - Feed cat
+      - Feed self
+      - Shower
+      - Brush teeth
+        - if top teeth are done:
+            - brush bottom teeth
+      - Gym
+    - Lunch
+      - Eat
+    - Evening
+      - Take a nap
+  - T
+    - Morning
+    - Lunch
+    - Evening
+  - W
+    - Morning
+    - Lunch
+    - Evening
+  - T
+    - Morning
+    - Lunch
+    - Evening
+  - F
+    - Morning
+    - Lunch
+    - Evening

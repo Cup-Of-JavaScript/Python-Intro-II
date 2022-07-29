@@ -1,0 +1,8 @@
+.idea/
+
+Assignments/**/*.pyc
+Lectures/**/*.pyc
+
+main.py
+
+venv/
