@@ -1,4 +1,4 @@
-# Python Intro I Assignments
+# Python Intro II Assignments
 Submit a PR for each assignment.
 
 # Ex. 1 Lambda
