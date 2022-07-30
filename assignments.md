@@ -176,7 +176,7 @@ Polling SQS 16:34:33...
 Polling SQS 16:34:36...
 ```
 
-# Ex. 6 Postgres DB
+# Ex. 6 Postgres DB Insert Cat
 Create a new database on your local Postgres instance called Cats.  Create a cat table with the 
 following schema:
 
@@ -200,3 +200,21 @@ def ex6():
 
 Output:
 Nothing on the terminal, check the database table (`select * from cat`)
+
+# Ex. 7 Postgres DB Get Cat
+Create a function called `get_cat()` that accepts an integer which returns the cat for the id passed
+into this function.
+
+Usage:
+```python
+    cat_id = 1
+    cat = get_cat(cat_id)
+    print(cat)
+```
+
+Output:
+```
+(1, 'gypsy', 'hungry')
+```
+
+Hint: Cast the cat_id to a string inside the `get_cat()` function.  Also, use `fetchone()`.
