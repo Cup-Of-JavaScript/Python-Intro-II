@@ -4,7 +4,7 @@ Submit a PR for each exercise.
 # Ex. 1 Sort with Lambda
 Given the following list:
 
-```
+```Python
 people_list = [
     {'name': 'alice', 'age': 20, 'weight': 160, 'sex': 'male', 'id': 1},
     {'name': 'bob', 'age': 10, 'weight': 130, 'sex': 'male', 'id': 2},
@@ -19,9 +19,9 @@ Create a function called `sort_people()` that accepts the following arguments:
 
 This function must use a Lambda function to perform the sort.
 
-The function is used in the following manner:
+Usage:
 
-```
+```Python
 def ex1():
     people_list = [
         {'name': 'alice', 'age': 20, 'weight': 160, 'sex': 'male', 'id': 1},
@@ -40,7 +40,7 @@ Output:
 # Ex. 2 Filter
 Given the following list:
 
-```
+```Python
 people_list = [
     {'name': 'alice', 'age': 20, 'weight': 160, 'sex': 'male', 'id': 1},
     {'name': 'bob', 'age': 10, 'weight': 130, 'sex': 'male', 'id': 2},
@@ -55,7 +55,7 @@ This function returns only the males from the list of people.
 
 The function is used in the following manner:
 
-```
+```Python
 def ex2():
     people_list = [
         {'name': 'alice', 'age': 20, 'weight': 160, 'sex': 'male', 'id': 1},
@@ -73,7 +73,7 @@ Output:
 # Ex. 3 Map
 Given the following list:
 
-```
+```Python
 people_list = [
     {'id': 2, 'name': 'bob',     'weight_kg': 90, 'height_meters': 1.7},
     {'id': 3, 'name': 'charlie', 'weight_kg': 80, 'height_meters': 1.8},
@@ -87,7 +87,7 @@ using this syntax: `round(weight / height ** 2, 1)`.
 The `calc_bmi()` function must use the `map()` function.
 
 Usage:
-```
+```Python
 def ex3():
     people_list = [
         {'id': 2, 'name': 'bob',     'weight_kg': 90, 'height_meters': 1.7},
@@ -118,7 +118,7 @@ Create a function called `get_people()` that accepts a list of people.  Use a li
 to return the names of people that are equal to or greater than 15 years old.
 
 Usage:
-```
+```Python
 def ex4():
     people_list = [
         {'name': 'alice', 'age': 20, 'weight': 160, 'sex': 'male', 'id': 1},
@@ -134,8 +134,38 @@ Output:
 ```
 
 # Ex. 5 SQS
+Create the following functions:
+  - send_message_to_sqs()
+  - read_message_from_sqs()
 
+The `send_message_to_sqs()` function sends a cat to SQS and `read_message_from_sqs()` reads a message from SQS.
 
+Usage:
+```Python
+def ex5():
+    cat = {
+        "cat_id": 1,
+        "cat_name": "Gypsy",
+        "status": "hungry"
+    }
+    response = send_message_to_sqs(cat, 'https://sqs.us-east-1.amazonaws.com/807758713182/stu-0')
+    while True:
+        time.sleep(3)
+    msg = read_message_from_sqs('https://sqs.us-east-1.amazonaws.com/807758713182/stu-0')
+        if msg:
+            print(msg)
+        else:
+            now = datetime.now().strftime("%H:%M:%S")
+            print(f"Polling SQS { now }...")
+```
+
+Output:
+```
+{'status': 'hungry', 'cat_id': '1', 'cat_name': 'Gypsy'}
+Polling SQS 16:34:30...
+Polling SQS 16:34:33...
+Polling SQS 16:34:36...
+```
 
 # Ex. 6 Postgres DB
 
