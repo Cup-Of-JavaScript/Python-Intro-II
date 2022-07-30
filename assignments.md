@@ -1,6 +1,8 @@
 # Python Intro II Assignments
 Submit a PR for each exercise.
 
+Use this [Python Reference](https://gitlab.com/mburolla/python-reference/) as a guide to these exercises.
+
 # Ex. 1 Sort with Lambda
 Given the following list:
 
