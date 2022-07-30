@@ -73,6 +73,7 @@ Output:
 # Ex. 3 Map
 
 
+BMI = kg/m<sup>2</sup>
 
 
 # Ex. 4 List Comprehension
