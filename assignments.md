@@ -71,12 +71,42 @@ Output:
 ```
 
 # Ex. 3 Map
+Given the following list:
 
+```
+people_list = [
+    {'id': 2, 'name': 'bob',     'weight_kg': 90, 'height_meters': 1.7},
+    {'id': 3, 'name': 'charlie', 'weight_kg': 80, 'height_meters': 1.8},
+]
+```
 
-BMI = kg/m<sup>2</sup>
+Create a function called `calc_bmi()` that accepts this list and calculates the BMI (Body Mass Index) for 
+each person.  The formula for BMI is:  BMI = weight/height<sup>2</sup>.  This can be expressed in python
+using this syntax: `round(weight / height ** 2, 1)`.
 
+The `calc_bmi()` function must use the `map()` function.
+
+Usage:
+```
+def ex3():
+    people_list = [
+        {'id': 2, 'name': 'bob',     'weight_kg': 90, 'height_meters': 1.7},
+        {'id': 3, 'name': 'charlie', 'weight_kg': 80, 'height_meters': 1.8},
+    ]
+    new_people_list = calc_bmi(people_list)
+    print(new_people_list)
+```
+
+Output:
+```
+[{'id': 2, 'name': 'bob', 'weight_kg': 90, 'height_meters': 1.7, 'bmi': 31.1}, 
+{'id': 3, 'name': 'charlie', 'weight_kg': 80, 'height_meters': 1.8, 'bmi': 24.7}]
+```
 
 # Ex. 4 List Comprehension
+
+
+
 
 # Ex. 5 SQS
 
