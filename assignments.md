@@ -51,7 +51,7 @@ people_list = [
 ```
 
 Create a function called `filter_males()` that accepts the following arguments:
-    - A list of people
+- A list of people
 
 This function returns only the males from the list of people.
 
