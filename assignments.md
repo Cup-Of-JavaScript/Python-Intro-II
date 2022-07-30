@@ -182,6 +182,7 @@ cat_id: Integer
 cat_name: Text
 status: Text
 ```
+Create a function called `save_to_cat_table()` that accepts a Cat object and saves it to the table.
 
 Usage:
 ```python
