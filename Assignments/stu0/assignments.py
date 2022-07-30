@@ -6,8 +6,12 @@
 
 import requests
 import psycopg2
+import logging
 import boto3
+import time
+from datetime import datetime
 
+sqs = boto3.client('sqs')
 
 def ex1():
     people_list = [
@@ -48,7 +52,20 @@ def ex4():
 
 
 def ex5():
-    print('here')
+    cat = {
+        "cat_id": 1,
+        "cat_name": "Gypsy",
+        "status": "hungry"
+    }
+    response = send_message_to_sqs(cat, 'https://sqs.us-east-1.amazonaws.com/807758713182/stu-0')
+    while True:
+        time.sleep(3)
+        msg = read_message_from_sqs('https://sqs.us-east-1.amazonaws.com/807758713182/stu-0')
+        if msg:
+            print(msg)
+        else:
+            now = datetime.now().strftime("%H:%M:%S")
+            print(f"Polling SQS { now }...")
 
 
 def ex6():
@@ -93,3 +110,60 @@ def calc_bmi(people):
 
 def get_people(people):
     return [p['name'] for p in people if p['age'] >= 15]
+
+
+def send_message_to_sqs(cat, queue_url):
+    response = sqs.send_message(
+        QueueUrl=queue_url,
+        DelaySeconds=10,
+        MessageAttributes={
+            'CatId': {
+                'DataType': 'Number',
+                'StringValue': str(cat["cat_id"])
+            },
+            'CatName': {
+                'DataType': 'String',
+                'StringValue': cat["cat_name"]
+            }
+        },
+        MessageBody=(
+            cat["status"]
+        )
+    )
+    return response['MessageId']
+
+
+def read_message_from_sqs(queue_url):
+    retval = None
+
+    # Read message from SQS queue.
+    response = sqs.receive_message(
+        QueueUrl=queue_url,
+        AttributeNames=['SentTimestamp'],
+        MaxNumberOfMessages=1,
+        MessageAttributeNames=['All'],
+        VisibilityTimeout=30,
+        WaitTimeSeconds=0
+    )
+
+    message = None
+    try:
+        message = response['Messages'][0]  # Only read one.
+    except KeyError as ke:
+        logging.info("SQS queue is empty.")
+
+    if message:
+        retval = {
+            "status": message["Body"],
+            "cat_id": message["MessageAttributes"]["CatId"]["StringValue"],
+            "cat_name": message["MessageAttributes"]["CatName"]["StringValue"]
+        }
+
+        # Delete message once we have read it from the queue.
+        receipt_handle = message['ReceiptHandle']
+        sqs.delete_message(
+            QueueUrl=queue_url,
+            ReceiptHandle=receipt_handle
+        )
+
+    return retval
