@@ -115,7 +115,7 @@ people_list = [
 ```
 
 Create a function called `get_people()` that accepts a list of people.  Use a list comprehension
-to return the names of people that are over 15 years old.
+to return the names of people that are equal to or greater than 15 years old.
 
 Usage:
 ```
