@@ -142,7 +142,7 @@ Create the following functions:
 
 The `send_message_to_sqs()` function sends a cat to SQS and `read_message_from_sqs()` reads a message from SQS.
 
-NOTE: Be sure to use the SQS queue that corresponds with your student id!
+**NOTE**: Be sure to use the SQS queue that corresponds with your student id!
 
 `https://sqs.us-east-1.amazonaws.com/807758713182/stu-{student id}`
 
