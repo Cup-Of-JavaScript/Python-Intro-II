@@ -108,7 +108,7 @@ Output:
 # Ex. 4 List Comprehension
 Given the following list:
 
-```
+```python
 people_list = [
     {'name': 'alice',   'age': 20, 'weight': 160, 'sex': 'male',   'id': 1},
     {'name': 'bob',     'age': 10, 'weight': 130, 'sex': 'male',   'id': 2},
@@ -147,7 +147,6 @@ The `send_message_to_sqs()` function sends a cat to SQS and `read_message_from_s
 `https://sqs.us-east-1.amazonaws.com/807758713182/stu-{student id}`
 
 Usage:
-
 ```python
 def ex5():
     cat = {
