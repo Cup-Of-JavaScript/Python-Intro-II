@@ -6,7 +6,7 @@ Use this [Python Reference](https://gitlab.com/mburolla/python-reference/) as a 
 # Ex. 1 Sort with Lambda
 Given the following list:
 
-```Python
+```python
 people_list = [
     {'name': 'alice',   'age': 20, 'weight': 160, 'sex': 'male',   'id': 1},
     {'name': 'bob',     'age': 10, 'weight': 130, 'sex': 'male',   'id': 2},
@@ -23,7 +23,7 @@ This function must use a Lambda function to perform the sort.
 
 Usage:
 
-```Python
+```python
 def ex1():
     people_list = [
         {'name': 'alice',   'age': 20, 'weight': 160, 'sex': 'male',   'id': 1},
@@ -42,7 +42,7 @@ Output:
 # Ex. 2 Filter
 Given the following list:
 
-```Python
+```python
 people_list = [
     {'name': 'alice',   'age': 20, 'weight': 160, 'sex': 'male',   'id': 1},
     {'name': 'bob',     'age': 10, 'weight': 130, 'sex': 'male',   'id': 2},
@@ -57,7 +57,7 @@ This function returns only the males from the list of people.
 
 The function is used in the following manner:
 
-```Python
+```python
 def ex2():
     people_list = [
         {'name': 'alice',   'age': 20, 'weight': 160, 'sex': 'male',   'id': 1},
@@ -75,7 +75,7 @@ Output:
 # Ex. 3 Map
 Given the following list:
 
-```Python
+```python
 people_list = [
     {'id': 2, 'name': 'bob',     'weight_kg': 90, 'height_meters': 1.7},
     {'id': 3, 'name': 'charlie', 'weight_kg': 80, 'height_meters': 1.8},
@@ -89,7 +89,7 @@ using this syntax: `round(weight / height ** 2, 1)`.
 The `calc_bmi()` function must use the `map()` function.
 
 Usage:
-```Python
+```python
 def ex3():
     people_list = [
         {'id': 2, 'name': 'bob',     'weight_kg': 90, 'height_meters': 1.7},
@@ -120,7 +120,7 @@ Create a function called `get_people()` that accepts a list of people.  Use a li
 to return the names of people that are equal to or greater than 15 years old.
 
 Usage:
-```Python
+```python
 def ex4():
     people_list = [
         {'name': 'alice',   'age': 20, 'weight': 160, 'sex': 'male',   'id': 1},
@@ -148,7 +148,7 @@ The `send_message_to_sqs()` function sends a cat to SQS and `read_message_from_s
 
 Usage:
 
-```Python
+```python
 def ex5():
     cat = {
         "cat_id": 1,
