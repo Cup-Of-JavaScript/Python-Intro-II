@@ -172,7 +172,25 @@ Polling SQS 16:34:36...
 ```
 
 # Ex. 6 Postgres DB
+Create a new database on your local Postgres instance called Cats.  Create a cat table with the 
+following schema:
 
-# Ex. 7 AWS S3
+```
+cat_id: Integer
+cat_name: Text
+status: Text
+```
 
-# Ex. 8 Requests
+Usage:
+```python
+def ex6():
+    cat = {
+        "cat_id": 1,
+        "cat_name": "Gypsy",
+        "status": "hungry"
+    }
+    save_to_cat_table(cat)
+```
+
+Output:
+Nothing on the terminal, check the database table (`select * from cat`)

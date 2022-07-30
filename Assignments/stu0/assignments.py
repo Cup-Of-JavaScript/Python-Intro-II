@@ -6,12 +6,19 @@
 
 import requests
 import psycopg2
+from psycopg2 import pool
 import logging
 import boto3
 import time
 from datetime import datetime
 
 sqs = boto3.client('sqs')
+INSERT_CAT = "insert into cat (cat_id, cat_name, status) values (%s, %s, %s)"
+pg_pool = psycopg2.pool.SimpleConnectionPool(1, 20,
+                                             user="postgres",
+                                             password="Ihgdp51505150!",
+                                             host="localhost",
+                                             database="cats")
 
 def ex1():
     people_list = [
@@ -69,20 +76,12 @@ def ex5():
 
 
 def ex6():
-    print('here')
-
-
-def ex7():
-    print('here')
-
-
-def ex8():
-    print('here')
-
-
-def ex9():
-    print('here')
-
+    cat = {
+        "cat_id": 1,
+        "cat_name": "Gypsy",
+        "status": "hungry"
+    }
+    save_to_cat_table(cat)
 
 #
 # Place your functions here...
@@ -167,3 +166,9 @@ def read_message_from_sqs(queue_url):
         )
 
     return retval
+
+
+def save_to_cat_table(cat):
+    with pg_pool.getconn() as conn:
+        with conn.cursor() as cur:
+            cur.execute(INSERT_CAT, (cat["cat_id"], cat["cat_name"], cat["status"]))
