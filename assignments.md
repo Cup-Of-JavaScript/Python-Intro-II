@@ -1,5 +1,5 @@
 # Python Intro II Assignments
-Submit a PR for each assignment.
+Submit a PR for each exercise.
 
 # Ex. 1 Sort with Lambda
 Given the following list:
@@ -38,8 +38,42 @@ Output:
 ```
 
 # Ex. 2 Filter
+Given the following list:
+
+```
+people_list = [
+    {'name': 'alice', 'age': 20, 'weight': 160, 'sex': 'male', 'id': 1},
+    {'name': 'bob', 'age': 10, 'weight': 130, 'sex': 'male', 'id': 2},
+    {'name': 'charlie', 'age': 15, 'weight': 120, 'sex': 'female', 'id': 3},
+]
+```
+
+Create a function called `filter_males()` that accepts the following arguments:
+    - A list of people
+
+This function returns only the males from the list of people.
+
+The function is used in the following manner:
+
+```
+def ex2():
+    people_list = [
+        {'name': 'alice', 'age': 20, 'weight': 160, 'sex': 'male', 'id': 1},
+        {'name': 'bob', 'age': 10, 'weight': 130, 'sex': 'male', 'id': 2},
+        {'name': 'charlie', 'age': 15, 'weight': 120, 'sex': 'female', 'id': 3},
+    ]
+    filtered_list = filter_males(people_list)
+    print(filtered_list)
+```
+Output:
+```
+[{'name': 'alice', 'age': 20, 'weight': 160, 'sex': 'male', 'id': 1}, {'name': 'bob', 'age': 10, 'weight': 130, 'sex': 'male', 'id': 2}]
+```
 
 # Ex. 3 Map
+
+
+
 
 # Ex. 4 List Comprehension
 
