@@ -1,7 +1,7 @@
 #
 # File: assignments.py
 # Date: 7/3/2022
-# Desc: Intro Python I
+# Desc: Intro Python II
 #
 
 import requests
