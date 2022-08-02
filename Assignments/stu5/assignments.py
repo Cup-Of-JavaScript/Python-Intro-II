@@ -29,7 +29,7 @@ def ex1():
         {'name': 'bob', 'age': 10, 'weight': 130, 'sex': 'male', 'id': 2},
         {'name': 'charlie', 'age': 15, 'weight': 120, 'sex': 'female', 'id': 3},
     ]
-    people_list.sort(key=lambda p: p['weight'], reverse=True)
+    sort_people(people_list, 'weight', 'desc')
     print(people_list)
 
 
@@ -107,8 +107,15 @@ def ex7():
 #
 
 
-def sort_people(people_list):
-    people_list.sort(key=lambda p: p['weight'], reverse=True)
+def sort_people(people_list, x, y):
+    if y == 'desc':
+        people_list.sort(key=lambda p: p[x], reverse=True)
+    else:
+        people_list.sort(key=lambda p: p[x])
+
+
+
+
 
 
 
