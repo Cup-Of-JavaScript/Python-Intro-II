@@ -101,7 +101,6 @@ def sort_people():
         {'name': 'bob', 'age': 10, 'weight': 130, 'sex': 'male', 'id': 2},
         {'name': 'charlie', 'age': 15, 'weight': 120, 'sex': 'female', 'id': 3},
     ]
-    print(people_list)
     people_list.sort(key = lambda x: x['weight'], reverse = True)  #sort by weight in desc order
     print(people_list)
 
