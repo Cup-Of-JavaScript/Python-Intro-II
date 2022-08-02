@@ -103,5 +103,5 @@ def ex7():
 # Place your functions here...
 #
 def sort_people(people_list, x, y):
-    people_list.sort(key=lambda z: z[x])
+    people_list.sort(key=lambda y: y[x])
     return people_list
