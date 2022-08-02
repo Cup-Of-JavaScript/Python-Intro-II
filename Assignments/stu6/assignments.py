@@ -24,7 +24,13 @@ from datetime import datetime
 
 
 def ex1():
-    sort_people()
+    people_list = [
+        {'name': 'alice',   'age': 20, 'weight': 160, 'sex': 'male',   'id': 1},
+        {'name': 'bob',     'age': 10, 'weight': 130, 'sex': 'male',   'id': 2},
+        {'name': 'charlie', 'age': 15, 'weight': 120, 'sex': 'female', 'id': 3},
+    ]
+    sort_people(people_list, 'weight', 'desc')
+    print(people_list)
 
 def ex2():
     print("TODO ...")
@@ -95,13 +101,14 @@ def ex7():
 #
 # Place your functions here...
 #
-def sort_people():
-    people_list = [
-        {'name': 'alice', 'age': 20, 'weight': 160, 'sex': 'male', 'id': 1},
-        {'name': 'bob', 'age': 10, 'weight': 130, 'sex': 'male', 'id': 2},
-        {'name': 'charlie', 'age': 15, 'weight': 120, 'sex': 'female', 'id': 3},
-    ]
-    people_list.sort(key = lambda x: x['weight'], reverse = True)  #sort by weight in desc order
-    print(people_list)
+def sort_people(people_list, x, y):
+    y = input("Sort by asc or desc? ")
+    if y == "asc":
+        people_list.sort(key = lambda w: w[x])  #sort by weight in asc order
+    else:
+        people_list.sort(key = lambda w: w[x], reverse = True)   #sort by weight in desc order
+
+
+
 
 
