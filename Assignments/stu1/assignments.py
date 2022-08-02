@@ -4,13 +4,13 @@
 # Desc: Intro Python II
 #
 
-#import requests
-#import psycopg2
-#from psycopg2 import pool
-#import logging
-#import boto3
-#import time
-#from datetime
+import requests
+import psycopg2
+from psycopg2 import pool
+import logging
+import boto3
+import time
+# from datetime
 
 #sqs = boto3.client('sqs')
 #INSERT_CAT = ""

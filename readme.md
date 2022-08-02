@@ -11,7 +11,7 @@ Assignments are located [here](assignments.md).
 - Open Terminal window (click on Terminal tab at bottom of IntelliJ)
 - Create virtual environment: `python -m venv venv`
   - You should see a new `venv` directory in the project
-- Activate virtual environment: `python -m venv venv`
+- Activate virtual environment: `venv\Scripts\activate.bat`
   - You should see `(env)` in the terminal windows
 - Install dependecies: `pip install -r requirements.txt`
 - Create a new file called `main.py`
