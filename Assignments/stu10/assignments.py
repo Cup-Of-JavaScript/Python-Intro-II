@@ -106,6 +106,9 @@ def ex7():
 
 #ex1
 def sort_people(people_list, x, y):
-    sorted(people_list, key= lambda x: (x["weight"], reversed ==True))
+    if x == 'desc':
+        sorted(people_list, key= lambda x: (x["weight"], reversed ==True))
+    else:
+        sorted(people_list, key= lambda x: x["weight"])
 
 
