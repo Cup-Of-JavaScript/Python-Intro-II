@@ -102,7 +102,6 @@ def ex7():
 # Place your functions here...
 #
 def sort_people(people_list, x, y):
-    y = input("Sort by asc or desc? ")
     if y == "asc":
         people_list.sort(key = lambda w: w[x])  #sort by weight in asc order
     else:
