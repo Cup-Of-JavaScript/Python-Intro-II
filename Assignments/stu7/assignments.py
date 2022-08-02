@@ -104,8 +104,8 @@ def ex7():
 #
 # Ex1:
 def sort_people(people_list, a, b):
-    if b == "desc":
-# peopleList.sort(key = lambda p : p['weight']) # Inline Lambda, in-place sort.
+    if b == "asc":
+        people_list.sort(key=lambda p: p[a], reverse=False) # Inline Lambda, in-place sort.
 
 
 
