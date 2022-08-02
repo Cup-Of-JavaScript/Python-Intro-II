@@ -105,7 +105,6 @@ def ex7():
 def sort_people(people_list, x, y):
     people_list.sort(key=lambda z: z[x], reverse=True)
     if x == sorted(y,reverse=False):
-        return 'Ascending'
+        return people_list
     elif x == sorted(y,reverse=True):
-        return 'Descending'
-    return people_list
+        return people_list
