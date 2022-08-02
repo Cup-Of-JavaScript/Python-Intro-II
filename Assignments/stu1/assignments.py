@@ -104,7 +104,5 @@ def ex7():
 #
 def sort_people(people_list, x, y):
     people_list.sort(key=lambda z: z[x], reverse=True)
-    if x == sorted(y,reverse=False):
-        return people_list
-    elif x == sorted(y,reverse=True):
+    if x == sorted(y,reverse=True):
         return people_list
