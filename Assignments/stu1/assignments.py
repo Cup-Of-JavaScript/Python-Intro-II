@@ -10,7 +10,7 @@ from psycopg2 import pool
 import logging
 import boto3
 import time
-# from datetime
+from datetime import datetime
 
 #sqs = boto3.client('sqs')
 #INSERT_CAT = ""
