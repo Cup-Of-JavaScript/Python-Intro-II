@@ -32,7 +32,6 @@ def ex1():
     sort_people(people_list, 'weight', 'desc')
     print(people_list)
 
-
 def ex2():
     print("TODO ...")
     people_list = [
@@ -106,7 +105,8 @@ def ex7():
 def sort_people(people_list, a, b):
     if b == "asc":
         people_list.sort(key=lambda p: p[a], reverse=False) # Inline Lambda, in-place sort.
-
+    elif b == "desc":
+        people_list.sort(key=lambda p: p[a], reverse=True)
 
 
 
