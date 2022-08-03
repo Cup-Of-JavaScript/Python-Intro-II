@@ -53,13 +53,12 @@ def ex3():
 
 
 def ex4():
-    print("TODO ...")
     people_list = [
         {'name': 'alice', 'age': 20, 'weight': 160, 'sex': 'male', 'id': 1},
         {'name': 'bob', 'age': 10, 'weight': 130, 'sex': 'male', 'id': 2},
         {'name': 'charlie', 'age': 15, 'weight': 120, 'sex': 'female', 'id': 3},
     ]
-    # print(get_people(people_list))
+    print(get_people(people_list))
 
 
 def ex5():
@@ -122,6 +121,9 @@ def calc_bmi(people_list):  #Map
     return new_people_list
 
 
+def get_people(people_list):
+    p = [x['name'] for x in people_list if x['age'] >=15]
+    return p
 
 
 
@@ -137,9 +139,7 @@ def calc_bmi(people_list):  #Map
 
 
 
-    # for w in people_list:
-    #     print(float(w['weight_kg']))
-    #     print(type(float(w['weight_kg'])))
+
 
 
 
