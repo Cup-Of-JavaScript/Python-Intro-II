@@ -114,8 +114,14 @@ def filter_males(people_list):
 
 # Ex3:
 def calc_bmi(people_list):
-    male_only = list(filter(lambda x: x["sex"] == "male", people_list))
-    print(male_only)
+    my_list = list(map(lambda x: {
+        "id": x ["id"],
+        "weight_kg": x["weight_kg"],
+        "name": x["name"],
+        "height_meters": x["height_meters"],
+        "bmi": (round(float(x["weight_kg"]) / float(x["height_meters"]) ** 2, 1))
+    }, people_list))
+    return people_list
 
 
 
