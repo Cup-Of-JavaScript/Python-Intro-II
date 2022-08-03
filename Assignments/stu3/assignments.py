@@ -34,14 +34,13 @@ def ex1():
 
 
 def ex2():
-    print("TODO ...")
     people_list = [
         {'name': 'alice', 'age': 20, 'weight': 160, 'sex': 'male', 'id': 1},
         {'name': 'bob', 'age': 10, 'weight': 130, 'sex': 'male', 'id': 2},
         {'name': 'charlie', 'age': 15, 'weight': 120, 'sex': 'female', 'id': 3},
     ]
-    # filtered_list = filter_people(people_list)
-    # print(filtered_list)
+    filtered_list = filter_males(people_list)
+    print(filtered_list)
 
 
 def ex3():
@@ -110,3 +109,6 @@ def sort_people(people_list, x, y):
         people_list.sort(key=lambda z: z[x], reverse=True)
 
 
+def filter_males(people_list):
+    new_list = list(filter(lambda s: s['sex'] == 'male', people_list))
+    print(new_list)
