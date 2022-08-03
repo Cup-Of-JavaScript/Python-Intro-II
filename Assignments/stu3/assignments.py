@@ -121,3 +121,4 @@ def calc_bmi(people_list):
         'bmi': round(float(p['weight_kg']) / p['height_meters'] ** 2, 1)
     }, people_list))
     return new_list
+
