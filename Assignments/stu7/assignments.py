@@ -121,7 +121,7 @@ def calc_bmi(people_list):
         "height_meters": x["height_meters"],
         "bmi": (round(float(x["weight_kg"]) / float(x["height_meters"]) ** 2, 1))
     }, people_list))
-    return people_list
+    return my_list
 
 
 
