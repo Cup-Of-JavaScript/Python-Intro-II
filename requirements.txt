@@ -4,7 +4,6 @@ certifi==2022.6.15
 charset-normalizer==2.1.0
 idna==3.3
 jmespath==0.10.0
-numpy==1.21.2
 psycopg2==2.9.3
 pygame==2.0.2
 PyMySQL==1.0.2
