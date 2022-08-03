@@ -117,7 +117,6 @@ def calc_bmi(people_list):  #Map
     'name': b['name'],
     'weight_kg': b['weight_kg'],
     'height_meters': b['height_meters'],
-    # 'bmi': b[['weight_kg'] / (['height_meters'] * ['height_meters'])]
     'bmi': round(float(b['weight_kg']) / b['height_meters'] ** 2, 1)
     }, people_list))
     return new_people_list
