@@ -122,3 +122,7 @@ def calc_bmi(people_list):
     }, people_list))
     return new_list
 
+
+def get_people(people_list):
+    names = [p['name'] for p in people_list if p['age'] >= 15]
+    return names
