@@ -105,7 +105,7 @@ def ex7():
 
 def sort_people(people_list, x, y):
     if y == 'desc':
-        people_list.sort(key=lambda z: z[x], reverse=True)
+        people_list.sort(key=lambda z: z[x], reverse=False)
     if y == 'asc':
         people_list.sort(key=lambda z: z[x], reverse=True)
 
