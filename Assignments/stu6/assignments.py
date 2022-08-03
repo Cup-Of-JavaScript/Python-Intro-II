@@ -1,4 +1,3 @@
-#
 # File: assignments.py
 # Date: 7/3/2022
 # Desc: Intro Python II
@@ -44,13 +43,13 @@ def ex2():
 
 
 def ex3():
-    print("TODO ...")
     people_list = [
         {'id': 2, 'name': 'bob',     'weight_kg': 90, 'height_meters': 1.7},
         {'id': 3, 'name': 'charlie', 'weight_kg': 80, 'height_meters': 1.8},
     ]
-    # new_people_list = calc_bmi(people_list)
-    # print(new_people_list)
+    calc_bmi(people_list)
+    new_people_list = calc_bmi(people_list)
+    print(new_people_list)
 
 
 def ex4():
@@ -101,14 +100,47 @@ def ex7():
 #
 # Place your functions here...
 #
-def sort_people(people_list, x, y):
+def sort_people(people_list, x, y):  #sort w/ lambda
     if y == "asc":
         people_list.sort(key = lambda w: w[x])  #sort by weight in asc order
     else:
         people_list.sort(key = lambda w: w[x], reverse = True)   #sort by weight in desc order
 
-def filter_males(people_list):
+
+def filter_males(people_list):  #filter
     return list(filter(lambda s: s['sex'] == 'male', people_list))
+
+
+def calc_bmi(people_list):  #Map
+    new_people_list = list(map(lambda b: {
+    'id': b['id'],
+    'name': b['name'],
+    'weight_kg': b['weight_kg'],
+    'height_meters': b['height_meters'],
+    # 'bmi': b[['weight_kg'] / (['height_meters'] * ['height_meters'])]
+    'bmi': round(float(b['weight_kg']) / b['height_meters'] ** 2, 1)
+    }, people_list))
+    return new_people_list
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    # for w in people_list:
+    #     print(float(w['weight_kg']))
+    #     print(type(float(w['weight_kg'])))
 
 
 
