@@ -107,14 +107,11 @@ def sort_people(people_list, a, b):
     elif b == "desc":
         people_list.sort(key=lambda p: p[a], reverse=True)
 
+
 # Ex2:
 def filter_males(people_list):
-    if b == "asc":
-        people_list.sort(key=lambda p: p[a], reverse=False) # Inline Lambda, in-place sort.
-    elif b == "desc":
-        people_list.sort(key=lambda p: p[a], reverse=True)
-
-
+    male_only = list(filter(lambda x: x["sex"] == "male", people_list))
+    print(male_only)
 
 
 
