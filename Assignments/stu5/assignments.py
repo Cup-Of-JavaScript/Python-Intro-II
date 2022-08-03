@@ -61,13 +61,13 @@ def ex3():
 
 
 def ex4():
-    print("TODO ...")
     people_list = [
         {'name': 'alice', 'age': 20, 'weight': 160, 'sex': 'male', 'id': 1},
         {'name': 'bob', 'age': 10, 'weight': 130, 'sex': 'male', 'id': 2},
         {'name': 'charlie', 'age': 15, 'weight': 120, 'sex': 'female', 'id': 3},
     ]
-    # print(get_people(people_list))
+    print(get_people(people_list))
+
 
 
 def ex5():
@@ -129,6 +129,14 @@ def calc_bmi(people_list):
         'bmi': (round(float(p['weight_kg']) / float(p['height_meters']) ** 2, 1))
     }, people_list))
     return new_list
+
+def get_people(people_list):
+    new_list = [p['name'] for p in people_list if p['age'] >= 15]
+    return new_list
+
+
+
+
 
 
 
