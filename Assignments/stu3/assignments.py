@@ -44,23 +44,21 @@ def ex2():
 
 
 def ex3():
-    print("TODO ...")
     people_list = [
         {'id': 2, 'name': 'bob',     'weight_kg': 90, 'height_meters': 1.7},
         {'id': 3, 'name': 'charlie', 'weight_kg': 80, 'height_meters': 1.8},
     ]
-    # new_people_list = calc_bmi(people_list)
-    # print(new_people_list)
+    new_people_list = calc_bmi(people_list)
+    print(new_people_list)
 
 
 def ex4():
-    print("TODO ...")
     people_list = [
         {'name': 'alice', 'age': 20, 'weight': 160, 'sex': 'male', 'id': 1},
         {'name': 'bob', 'age': 10, 'weight': 130, 'sex': 'male', 'id': 2},
         {'name': 'charlie', 'age': 15, 'weight': 120, 'sex': 'female', 'id': 3},
     ]
-    # print(get_people(people_list))
+    print(get_people(people_list))
 
 
 def ex5():
@@ -112,3 +110,15 @@ def sort_people(people_list, x, y):
 def filter_males(people_list):
     new_list = list(filter(lambda s: s['sex'] == 'male', people_list))
     print(new_list)
+
+
+def calc_bmi(people_list):
+    new_list = list(map(lambda p: {
+        'id': p['id'],
+        'name': p['name'],
+        'weight_kg': p['weight_kg'],
+        'height_meters': p['height_meters'],
+        'bmi': round(float(p['weight_kg']) / p['height_meters'] ** 2, 1)
+    }, people_list))
+    return new_list
+
