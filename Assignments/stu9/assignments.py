@@ -46,12 +46,12 @@ def ex2():
 
 def ex3():
     people_list = [
-        {'id': 2, 'name': 'bob',     'ssn': '111-11-1111'},
-        {'id': 3, 'name': 'charlie', 'ssn': '222-22-2222'},
+        {'id': 2, 'name': 'bob',     'weight_kg': 90, 'height_meters': 1.7},
+        {'id': 3, 'name': 'charlie', 'weight_kg': 80, 'height_meters': 1.8},
     ]
-    new = calc_ssn(people_list)
-    print(new)
 
+    new_people_list = calc_bmi(people_list)
+    print(new_people_list)
 
 
 def ex4():
@@ -96,13 +96,17 @@ def get_people(people_list):
     l = [p['name'] for p in people_list if p['age'] >= 15]
     return l
 
-def calc_ssn(people_list):
-    list_ssn = list(map(lambda p: {
+def calc_bmi(people_list):
+
+    list_bmi = list(map(lambda p: {
         'id': p['id'],
         'name': p['name'],
-        'ssn': p['ssn'][7:]
+        'weight_kg': p['weight_kg'],
+        'height_meters': p['height_meters'],
+        'bmi' : round(p['weight_kg'] / p['height_meters'] ** 2, 1)
     },  people_list))
-    return list_ssn
+    return list_bmi
+
 
 def filter_males(people_list):
 
