@@ -186,9 +186,9 @@ def save_to_cat_table(cat):
             with conn.cursor() as cur:
                 cur.execute(INSERT_CAT, (cat['cat_id'], cat['cat_name'], cat['status']))
 
-def get_cat(cat_id):
+def get_cat(cat):
     with pg_pool.getconn() as conn:
         with conn.cursor() as cur:
             cur.execute(SELECT_CAT)
-            records = cur.fetchall()
+            records = cur.fetchone()
     return records
