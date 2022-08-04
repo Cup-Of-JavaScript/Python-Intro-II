@@ -200,10 +200,26 @@ def read_message_from_sqs(QUEUE_URL):
     return retval
 
 
+import os
+import psycopg2
+from psycopg2 import pool
 
+INSERT_CAT = "insert into cat (cat_id, cat_name, status) values (%s, %s, %s) returning cat_id"
 
+# The one and only Postgres connection pool.
+pg_pool = psycopg2.pool.SimpleConnectionPool(1, 20,
+                                             user="postgres",
+                                             password="Diane1991@",
+                                             host="localhost",
+                                             database="Cats")
 
-
+def save_to_cat_table(cat):
+    with pg_pool.getconn() as conn:
+        with conn.cursor() as cur:
+            cur.execute(INSERT_CAT, (cat["cat_id"], cat["cat_name"], cat["status"]))
+            # records = cur.fetchall()
+            # retval = records[0][0]
+    #return 'cat_id'
 
 
 
