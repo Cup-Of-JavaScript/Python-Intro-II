@@ -15,7 +15,7 @@ from datetime import datetime
 sqs = boto3.client('sqs')
 QUEUE_URL = 'https://sqs.us-east-1.amazonaws.com/807758713182/stu-10'
 INSERT_CAT = "insert into cats (cat_id, cat_name, status) values(%s, %s, %s)"
-SELECT_CAT = ""
+SELECT_CAT = "select * from cats where cat_id = %s"
 
 pg_pool = psycopg2.pool.SimpleConnectionPool(1, 20,
                                            user="postgres",
@@ -96,10 +96,10 @@ def ex6():
 
 
 def ex7():
-    print("TODO ...")
+    #print("TODO ...")
     cat_id = 1
-    # cat = get_cat(cat_id)
-    # print(cat)
+    cat = get_cat(cat_id)
+    print(cat)
 
 
 #
@@ -195,3 +195,14 @@ def save_to_cat_table(cat):
     with pg_pool.getconn() as conn:
         with conn.cursor() as cur:
             cur.execute(INSERT_CAT, (cat['cat_id'], cat['cat_name'], cat['status']))
+
+
+
+#ex7
+def get_cat(cat_id):
+
+    with pg_pool.getconn() as conn:
+        with conn.cursor() as cur:
+            cur.execute(SELECT_CAT, str(cat_id))
+            row = cur.fetchone()
+            return row
