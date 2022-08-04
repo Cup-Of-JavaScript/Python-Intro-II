@@ -23,6 +23,7 @@ pg_pool = psycopg2.pool.SimpleConnectionPool(1, 20,
                                              database="Cat Database")
 
 
+
 def ex1():
     people_list = [
         {'name': 'alice',   'age': 20, 'weight': 160, 'sex': 'male',   'id': 1},
@@ -182,4 +183,8 @@ def read_message_from_sqs(message):
     return retval
 
 def save_to_cat_table(cat):
-    print(cat)
+        with pg_pool.getconn() as conn:
+            with conn.cursor() as cur:
+                cur.execute(INSERT_CAT)
+                records = cur.fetchall()
+        return records
