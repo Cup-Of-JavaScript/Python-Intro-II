@@ -124,7 +124,7 @@ def calc_bmi(people_list):
 
 # Ex4:
 def get_people(people_list):
-    new_list = [x for x in people_list if x['age'] != 15]
+    new_list = [x['name'] for x in people_list if x['age'] != 15]
     return new_list
 
 
