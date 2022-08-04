@@ -12,7 +12,8 @@ import boto3
 import time
 from datetime import datetime
 
-# sqs = boto3.client('sqs')
+sqs = boto3.client('sqs')
+QUEUE_URL = 'https://sqs.us-east-1.amazonaws.com/807758713182/stu-10'
 # INSERT_CAT = ""
 # SELECT_CAT = ""
 #
@@ -66,21 +67,22 @@ def ex4():
 
 
 def ex5():
-    print("TODO ...")
+   # print("TODO ...")
     cat = {
         "cat_id": 1,
         "cat_name": "Gypsy",
         "status": "hungry"
     }
-    # response = send_message_to_sqs(cat, 'https://sqs.us-east-1.amazonaws.com/807758713182/stu-0')
-    # while True:
-    #     time.sleep(3)
-    #     msg = read_message_from_sqs('https://sqs.us-east-1.amazonaws.com/807758713182/stu-0')
-    #     if msg:
-    #         print(msg)
-    #     else:
-    #         now = datetime.now().strftime("%H:%M:%S")
-    #         print(f"Polling SQS { now }...")
+    response = send_message_to_sqs(cat, 'https://sqs.us-east-1.amazonaws.com/807758713182/stu-10')
+    print(response)
+    while True:
+        time.sleep(3)
+        msg = read_message_from_sqs('https://sqs.us-east-1.amazonaws.com/807758713182/stu-10')
+    if msg:
+        print(msg)
+    else:
+        now = datetime.now().strftime("%H:%M:%S")
+        print(f"Polling SQS { now }...")
 
 
 def ex6():
@@ -131,3 +133,60 @@ def calc_bmi(people_list):
 def get_people(people_list):
    l3 = [i['name'] for i in people_list if i['age'] >= 15]
    return l3
+
+#ex5
+def send_message_to_sqs(cat, queue_url):
+    response = sqs.send_message(
+        QueueUrl=QUEUE_URL,
+        DelaySeconds=10,
+        MessageAttributes={
+            'UserName': {
+                'DataType': 'String',
+                'StringValue': cat["cat_name"]
+            },
+            'UserId': {
+                'DataType': 'Number',
+                'StringValue': str(cat["cat_id"])
+            }
+        },
+        MessageBody=(
+            cat["status"]
+        )
+    )
+    return response['MessageId']
+
+
+
+def read_message_from_sqs(queue_url):
+    retval = None
+
+    response = sqs.receive_message(
+        QueueUrl=QUEUE_URL,
+        AttributeNames=['SentTimestamp'],
+        MaxNumberOfMessages=1,
+        MessageAttributeNames=['All'],
+        VisibilityTimeout=30,
+        WaitTimeSeconds=0
+    )
+
+    message = None
+    try:
+        message = response['Messages'][0]  # Only read one.
+    except KeyError as ke:
+        logging.info("SQS queue is empty.")
+
+    if message:
+        retval = {
+            "status": message["Body"],
+            "cat_id": message["MessageAttributes"]["UserId"]["StringValue"],
+            "cat_name": message["MessageAttributes"]["UserName"]["StringValue"]
+        }
+
+        receipt_handle = message['ReceiptHandle']
+        sqs.delete_message(
+            QueueUrl=QUEUE_URL,
+            ReceiptHandle=receipt_handle
+        )
+
+    return retval
+
