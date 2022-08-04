@@ -58,7 +58,7 @@ def ex4():
         {'name': 'bob', 'age': 10, 'weight': 130, 'sex': 'male', 'id': 2},
         {'name': 'charlie', 'age': 15, 'weight': 120, 'sex': 'female', 'id': 3},
     ]
-        print(get_people(people_list))
+    print(get_people(people_list))
 
 def ex5():
     print("TODO ...")
@@ -123,8 +123,8 @@ def calc_bmi(people_list):
     return my_list
 
 # Ex4:
-def get_people (people_list):
-    new_list = if p['age'] > 15 in people_list]
+def get_people(people_list):
+    new_list = [x for x in people_list if [people_list]['age'] > 15]
     return new_list
 
 
