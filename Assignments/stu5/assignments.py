@@ -99,10 +99,9 @@ def ex6():
 
 
 def ex7():
-    print("TODO ...")
     cat_id = 1
-    # cat = get_cat(cat_id)
-    # print(cat)
+    cat = get_cat(cat_id)
+    print(cat)
 
 
 #
@@ -205,7 +204,7 @@ import psycopg2
 from psycopg2 import pool
 
 INSERT_CAT = "insert into cat (cat_id, cat_name, status) values (%s, %s, %s) returning cat_id"
-
+SELECT_CAT = "select * from cat where cat_id = %s"
 # The one and only Postgres connection pool.
 pg_pool = psycopg2.pool.SimpleConnectionPool(1, 20,
                                              user="postgres",
@@ -220,6 +219,13 @@ def save_to_cat_table(cat):
             # records = cur.fetchall()
             # retval = records[0][0]
     #return 'cat_id'
+
+def get_cat(cat_id):
+    with pg_pool.getconn() as conn:
+        with conn.cursor() as cur:
+            cur.execute(SELECT_CAT, str(cat_id))
+            records = cur.fetchone()
+    return records
 
 
 
