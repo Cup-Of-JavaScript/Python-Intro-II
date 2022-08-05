@@ -12,14 +12,14 @@ import time
 from datetime import datetime
 
 sqs = boto3.client('sqs')
-# INSERT_CAT = ""
-# SELECT_CAT = ""
+INSERT_CAT = "insert into Cats (cat_id, cat_name, status) values (%s, %s, %s)"
+SELECT_CAT = "select * from Cats where cat_id $1"
 
-#pg_pool = psycopg2.pool.SimpleConnectionPool(1, 20,
-                                             # user="postgres",
-                                             # password="1141821Gagoka!",
-                                             # host="localhost",
-                                             # database="Cats")
+pg_pool = psycopg2.pool.SimpleConnectionPool(1, 20,
+                                             user="postgres",
+                                             password="1141821Gagoka!",
+                                             host="localhost",
+                                             database="Cats")
 
 
 def ex1():
@@ -78,13 +78,16 @@ def ex5():
             print(f"Polling SQS { now }...")
 
 def ex6():
-    print("TODO ...")
     cat = {
-        "cat_id": 1,
+        "cat_id": 2,
         "cat_name": "Gypsy",
-        "status": "hungry"
+        "status": "Feed me human, now!"
     }
-    # save_to_cat_table(cat)
+    save_to_cat_table(cat)
+def save_to_cat_table(cat):
+    with pg_pool.getconn() as conn:
+        with conn.cursor() as cur:
+            cur.execute(INSERT_CAT, (cat["cat_id"], cat["cat_name"], cat["status"]))
 
 
 def ex7():
