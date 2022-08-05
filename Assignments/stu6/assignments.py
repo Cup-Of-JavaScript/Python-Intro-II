@@ -13,7 +13,7 @@ from datetime import datetime
 
 sqs = boto3.client('sqs')
 INSERT_CAT = "insert into Cats (cat_id, cat_name, status) values (%s, %s, %s)"
-SELECT_CAT = "select * from Cats where cat_id $1"
+SELECT_CAT = "select * from Cats where cat_id = %s"
 
 pg_pool = psycopg2.pool.SimpleConnectionPool(1, 20,
                                              user="postgres",
@@ -91,10 +91,9 @@ def save_to_cat_table(cat):
 
 
 def ex7():
-    print("TODO ...")
-    # cat_id = 1
-    # cat = get_cat(cat_id)
-    # print(cat)
+    cat_id = 2
+    cat = get_cat(cat_id)
+    print(cat)
 
 def iga():
     light_list = [
@@ -200,6 +199,17 @@ def read_message_from_sqs(queue_url):
         )
 
     return retval
+
+
+
+def get_cat(cat_id):
+
+    with pg_pool.getconn() as conn:
+        with conn.cursor() as cur:
+            cur.execute(SELECT_CAT, str(cat_id))
+            row = cur.fetchone()
+            return row
+
 
 
 
