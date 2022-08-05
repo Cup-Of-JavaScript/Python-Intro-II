@@ -120,11 +120,11 @@ def send_message_to_sqs(cat, queue_url):
         QueueUrl=queue_url,
         DelaySeconds=10,
         MessageAttributes={
-            'UserName': {
+            'CatName': {
                 'DataType': 'String',
                 'StringValue': cat["cat_name"]
             },
-            'UserId': {
+            'CatId': {
                 'DataType': 'Number',
                 'StringValue': str(cat["cat_id"])
             }
@@ -159,8 +159,8 @@ def read_message_from_sqs(queue_url):
     if message:
         retval = {
             "status": message["Body"],
-            "cat_id": message["MessageAttributes"]["UserId"]["StringValue"],
-            "cat_name": message["MessageAttributes"]["UserName"]["StringValue"]
+            "cat_id": message["MessageAttributes"]["CatId"]["StringValue"],
+            "cat_name": message["MessageAttributes"]["CatName"]["StringValue"]
         }
 
         # Delete message once we have read it from the queue.
