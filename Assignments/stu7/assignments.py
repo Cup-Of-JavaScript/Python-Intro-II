@@ -12,7 +12,8 @@ import boto3
 import time
 from datetime import datetime
 
-# sqs = boto3.client('sqs')
+sqs = boto3.client('sqs')
+QUEUE_URL = 'https://sqs.us-east-1.amazonaws.com/807758713182/stu-7'
 # INSERT_CAT = ""
 # SELECT_CAT = ""
 #
@@ -61,21 +62,21 @@ def ex4():
     print(get_people(people_list))
 
 def ex5():
-    print("TODO ...")
+    # print("TODO ...")
     cat = {
         "cat_id": 1,
         "cat_name": "Gypsy",
         "status": "hungry"
     }
-    # response = send_message_to_sqs(cat, 'https://sqs.us-east-1.amazonaws.com/807758713182/stu-0')
-    # while True:
-    #     time.sleep(3)
-    #     msg = read_message_from_sqs('https://sqs.us-east-1.amazonaws.com/807758713182/stu-0')
-    #     if msg:
-    #         print(msg)
-    #     else:
-    #         now = datetime.now().strftime("%H:%M:%S")
-    #         print(f"Polling SQS { now }...")
+    response = send_message_to_sqs(cat, 'https://sqs.us-east-1.amazonaws.com/807758713182/stu-7')
+    while True:
+        time.sleep(3)
+        msg = read_message_from_sqs('https://sqs.us-east-1.amazonaws.com/807758713182/stu-7')
+        if msg:
+            print(msg)
+        else:
+            now = datetime.now().strftime("%H:%M:%S")
+            print(f"Polling SQS { now }...")
 
 
 def ex6():
@@ -128,3 +129,7 @@ def get_people(people_list):
     return new_list
 
 
+# Ex5:
+def get_people(people_list):
+    new_list = [x['name'] for x in people_list if x['age'] != 15]
+    return new_list
