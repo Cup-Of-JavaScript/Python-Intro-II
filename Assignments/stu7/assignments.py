@@ -4,6 +4,7 @@
 # Desc: Intro Python II
 #
 
+# sqs = boto3.client('sqs')
 import requests
 import psycopg2
 from psycopg2 import pool
@@ -12,7 +13,6 @@ import boto3
 import time
 from datetime import datetime
 
-sqs = boto3.client('sqs')
 QUEUE_URL = 'https://sqs.us-east-1.amazonaws.com/807758713182/stu-7'
 # INSERT_CAT = ""
 # SELECT_CAT = ""
@@ -130,6 +130,65 @@ def get_people(people_list):
 
 
 # Ex5:
-def get_people(people_list):
-    new_list = [x['name'] for x in people_list if x['age'] != 15]
-    return new_list
+def send_message_to_sqs(cat, QUEUE_URL):
+
+    response = sqs.send_message(
+        QueueUrl=QUEUE_URL,
+        DelaySeconds=10,
+        MessageAttributes={
+            'UserName': {
+                'DataType': 'String',
+                'StringValue': cat['cat_name']
+            },
+            'UserId': {
+                'DataType': 'Number',
+                'StringValue': str(cat['cat_id'])
+            }
+        },
+        MessageBody=(
+            cat["status"]
+        )
+    )
+    return response['MessageId']
+
+
+sqs = boto3.client('sqs')
+
+def read_message_from_sqs(message):
+    retval = None
+    # Read message from SQS queue.
+    response = sqs.receive_message(
+        QueueUrl=QUEUE_URL,
+        AttributeNames=['SentTimestamp'],
+        MaxNumberOfMessages=1,
+        MessageAttributeNames=['All'],
+        VisibilityTimeout=30,
+        WaitTimeSeconds=0
+    )
+    message = None
+    try:
+        message = response['Messages'][0]  # Only read one.
+    except KeyError as ke:
+        logging.info("SQS queue is empty.")
+
+    if message:
+        retval = {
+            "status": message["Body"],
+            "cat_id": message["MessageAttributes"]["UserId"]["StringValue"],
+            "cat_name": message["MessageAttributes"]["UserName"]["StringValue"]
+        }
+
+        # Delete message once we have read it from the queue.
+        receipt_handle = message['ReceiptHandle']
+        sqs.delete_message(
+            QueueUrl=QUEUE_URL,
+            ReceiptHandle=receipt_handle
+        )
+
+    return retval # pg_pool = psycopg2.pool.SimpleConnectionPool
+# (1, 20,
+# user="postgres",
+# password="Ihgdp51505150!",
+# host="localhost",
+# database="Cats")
+
